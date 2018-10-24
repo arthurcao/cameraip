@@ -91,10 +91,29 @@ public class CameraManagerdapter extends RecyclerView.Adapter<CameraManagerdapte
         LOG.e("updateVStarCam vstarcamReady: " + manager.vstarcamReady);
 
         if(manager.vstarcamReady){
+
+            for(int i = 0; i < manager.vStarCameras.size(); i++){
+                VStarCamera camera = manager.vStarCameras.get(i);
+
+                item = new CameraView();
+                item.type = CameraManager.TYPE_VSTARCAM;
+                item.title = camera.name;
+                item.subtitle = camera.did;
+                item.id = camera.did;
+                listItem.add(item);
+            }
+
+
             item = new CameraView();
             item.type = CameraManager.TYPE_VSCAM_BTN_ADD;
             item.title = manager.vstarcamAdd;
             listItem.add(item);
+
+            item = new CameraView();
+            item.type = CameraManager.TYPE_VSCAM_BTN_CONFIG_WIFI;
+            item.title = "Wifi configure";
+            listItem.add(item);
+
         }
     }
 
@@ -123,6 +142,8 @@ public class CameraManagerdapter extends RecyclerView.Adapter<CameraManagerdapte
             holder.title.setVisibility(View.VISIBLE);
             holder.subtitle.setVisibility(View.GONE);
             holder.title.setText(listItem.get(position).title);
+            holder.layout.setBackgroundColor(Color.parseColor("#bdc3c7"));
+//            holder.title.setBackgroundColor(Color.parseColor("#95a5a6"));#bdc3c7
 
         }else if(item.type == CameraManager.TYPE_NEST_CAM_BTN_ADD){
             holder.layout.setBackgroundColor(Color.WHITE);
@@ -166,6 +187,20 @@ public class CameraManagerdapter extends RecyclerView.Adapter<CameraManagerdapte
             holder.title.setBackgroundColor(Color.parseColor("#3498db"));
             holder.title.setPadding(0,16,0,16);
 
+        }else if(item.type == CameraManager.TYPE_VSCAM_BTN_CONFIG_WIFI){
+            holder.layout.setBackgroundColor(Color.WHITE);
+
+            holder.title.setGravity(Gravity.CENTER);
+            holder.title.setVisibility(View.VISIBLE);
+
+            holder.subtitle.setVisibility(View.GONE);
+
+            holder.title.setText(item.title);
+
+            holder.title.setTextColor(Color.WHITE);
+            holder.title.setBackgroundColor(Color.parseColor("#3498db"));
+            holder.title.setPadding(0,16,0,16);
+
         }else{
             holder.layout.setBackgroundColor(Color.WHITE);
 
@@ -196,16 +231,19 @@ public class CameraManagerdapter extends RecyclerView.Adapter<CameraManagerdapte
             }
         });
 
-//        holder.layout.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                if(mListener != null){
-//                    int position = (int)v.getTag(R.id.tag_camera_id2);
-//
-//                }
-//                return true;
-//            }
-//        });
+        holder.layout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(mListener != null){
+                    int position = (int)v.getTag(R.id.tag_camera_id);
+                    CameraView item = listItem.get(position);
+                    if(mListener != null){
+                        mListener.onLongClickItem(item.id, item.type);
+                    }
+                }
+                return true;
+            }
+        });
 
     }
 
@@ -223,6 +261,6 @@ public class CameraManagerdapter extends RecyclerView.Adapter<CameraManagerdapte
 
     public interface CameraManagerAdapterListener{
         void onClickItem(String id, int type);
-//        void deleteItem(Camera item, int index);
+        void onLongClickItem(String id, int type);
     }
 }

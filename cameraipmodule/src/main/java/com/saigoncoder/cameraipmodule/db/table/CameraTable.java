@@ -8,6 +8,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.saigoncoder.cameraipmodule.LOG;
 import com.saigoncoder.cameraipmodule.model.CameraDB;
 
 import java.util.ArrayList;
@@ -51,32 +52,34 @@ public class CameraTable {
 
 
     public void deleteRecord(SQLiteDatabase db, String token) {
-        String where = TOKEN + " = '" + TOKEN + "'";
+        String where = TOKEN + " = '" + token + "'";
         db.delete(TABLE_NAME, where, null);
     }
 
-    public void insertRecord(SQLiteDatabase db, CameraDB item) {
+    public void deleteRecord(SQLiteDatabase db, int id) {
+        String where = ID + " = " + id;
+        db.delete(TABLE_NAME, where, null);
+    }
 
-        if (checkRecordExist(db, item)) {
-            updateRecord(db, item);
-        } else {
-            ContentValues values = createContentValue(item);
-            db.insert(TABLE_NAME, null, values);
-        }
+    public int insertRecord(SQLiteDatabase db, CameraDB item) {
 
+        ContentValues values = createContentValue(item);
+        long id = db.insert(TABLE_NAME, null, values);
+        return (int) id;
     }
 
     public void updateRecord(SQLiteDatabase db, CameraDB item) {
         ContentValues values = createContentValue(item);
-        String where = TOKEN + " = '" + TOKEN + "'";
+        String where = ID + " = " + item.id;
         db.update(TABLE_NAME, values, where, null);
 
     }
 
     public ArrayList<CameraDB> readRecords(SQLiteDatabase db, int userid, int type) {
 
-        String where = USER + " = " + userid + " AND " + TYPE + "=" + type;
-
+        String where = USER + " = " + userid + " AND " + TYPE + " = " + type;
+        LOG.e("Where: " + where);
+        where = null;
         ArrayList<CameraDB> list = new ArrayList<>();
         Cursor cursor = db.query(TABLE_NAME, columns, where, null, null, null, null);
 

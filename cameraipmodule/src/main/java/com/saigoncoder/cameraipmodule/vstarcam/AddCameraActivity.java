@@ -20,10 +20,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.saigoncoder.cameraipmodule.LOG;
 import com.saigoncoder.cameraipmodule.R;
 import com.saigoncoder.cameraipmodule.SharedPreferencesUtil;
 import com.saigoncoder.cameraipmodule.db.MySQLiteDataSource;
 import com.saigoncoder.cameraipmodule.model.CameraDB;
+import com.saigoncoder.cameraipmodule.model.CameraManager;
 import com.saigoncoder.cameraipmodule.model.VStarCamera;
 import com.saigoncoder.cameraipmodule.utils.ProgressDialog;
 import com.saigoncoder.cameraipmodule.vstarcam.utils.ConnectVStarCamUtils;
@@ -109,8 +111,14 @@ public class AddCameraActivity extends AppCompatActivity {
                         btnView.setEnabled(false);
                         btnAdd.setEnabled(false);
                         ProgressDialog.dismiss();
+
                     }
                 });
+
+            }
+
+            @Override
+            public void connectWrongPassword() {
 
             }
         });
@@ -215,8 +223,8 @@ public class AddCameraActivity extends AppCompatActivity {
     }
 
     public void viewCamera(View view){
-//        Intent intent = new Intent(this,PlayActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this,PlayActivity.class);
+        startActivity(intent);
     }
 
     public void addCamera(View view){
@@ -230,12 +238,13 @@ public class AddCameraActivity extends AppCompatActivity {
         camera.data = data;
         camera.user = SharedPreferencesUtil.getUser(context);
         camera.token = strDID;
-        camera.type = 0;
+        camera.type = CameraManager.TYPE_VSTARCAM;
 
 
         MySQLiteDataSource sqLiteDataSource = new MySQLiteDataSource(context);
-        sqLiteDataSource.addCamera(camera);
-
+        int id = sqLiteDataSource.addCamera(camera);
+        LOG.e("Insert database id: " + id);
+        finish();
     }
 
     private int option = ContentCommon.INVALID_OPTION;

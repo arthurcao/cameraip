@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/play"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:scrollbars="none">
+
+            <LinearLayout
+
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp">
+
+                <TextView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_background_color"
+                    android:drawableTop="@drawable/ic_capture"
+                    android:gravity="center_horizontal"
+                    android:onClick="pressTakePicture"
+                    android:padding="5dp"
+                    android:text="Capture"
+                    android:textColor="@color/btn_text_colorc" />
+
+
+                <TextView
+                    android:id="@+id/ptz_take_videos"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_background_color"
+                    android:drawableTop="@drawable/ic_video"
+                    android:gravity="center_horizontal"
+
+                    android:onClick="pressTakeVideo"
+                    android:padding="5dp"
+                    android:text="Video"
+                    android:textColor="@color/btn_text_colorc" />
+
+                <TextView
+                    android:id="@+id/ptz_audio"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_background_color"
+                    android:drawableTop="@drawable/ic_listen"
+                    android:gravity="center_horizontal"
+                    android:onClick="pressListen"
+                    android:padding="5dp"
+                    android:text="Listen"
+                    android:textColor="@color/btn_text_colorc" />
+
+                <TextView
+                    android:id="@+id/ptz_talk"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_background_color"
+                    android:drawableTop="@drawable/ic_talk"
+                    android:gravity="center_horizontal"
+                    android:onClick="pressTalk"
+                    android:padding="5dp"
+                    android:text="Talk"
+                    android:textColor="@color/btn_text_colorc" />
+
+
+            </LinearLayout>
+        </HorizontalScrollView>
+        <FrameLayout
+
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <android.opengl.GLSurfaceView
+                android:id="@+id/mysurfaceview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:longClickable="true" />
+
+            <ImageView
+                android:id="@+id/vedioview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#ff00ffff"
+                android:scaleType="center"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/vedioview_standard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="#ff000000"
+                android:scaleType="matrix"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/progressLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="connecting" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+
+        <!-- 底部菜单 -->
+
+
+
+        <HorizontalScrollView
+            android:scrollbars="none"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_background_color"
+                    android:drawableTop="@drawable/cam_ic_settings"
+                    android:gravity="center_horizontal"
+                    android:onClick="pressSettings"
+                    android:padding="5dp"
+                    android:text="Settings"
+                    android:textColor="@color/btn_text_colorc" />
+
+                <TextView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_background_color"
+                    android:drawableTop="@drawable/cam_ic_pan_tilt"
+
+                    android:gravity="center_horizontal"
+                    android:onClick="pressPanTilt"
+                    android:padding="5dp"
+                    android:text="Pan Tilt"
+                    android:textColor="@color/btn_text_colorc" />
+
+
+
+                <TextView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_margin="4dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_background_color"
+                    android:drawableTop="@drawable/ic_brightness"
+                    android:gravity="center_horizontal"
+                    android:lines="1"
+                    android:onClick="pressBrightness"
+                    android:padding="5dp"
+                    android:text="Brightness"
+                    android:textColor="@color/btn_text_colorc" />
+
+                <TextView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_background_color"
+                    android:drawableTop="@drawable/ic_resolution"
+                    android:gravity="center_horizontal"
+                    android:lines="1"
+                    android:onClick="pressResolution"
+                    android:padding="5dp"
+                    android:text="Resolution"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/btn_text_colorc" />
+
+                <TextView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_background_color"
+                    android:drawableTop="@drawable/ic_reset"
+                    android:gravity="center_horizontal"
+                    android:lines="1"
+                    android:onClick="pressReset"
+                    android:padding="5dp"
+                    android:text="Reset"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/btn_text_colorc" />
+
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/activity_play_brightness_menu"
+        layout="@layout/camera_play_menu_brightness"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/activity_play_resolution"
+        layout="@layout/camera_play_resolution"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/activity_play_cruise"
+        layout="@layout/camera_play_cruise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="gone" />
+
+</FrameLayout>

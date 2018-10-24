@@ -32,17 +32,18 @@ public class MySQLiteDataSource {
         dbHelper.close();
     }
 
-    public void addCamera(CameraDB item){
+    public int addCamera(CameraDB item){
         open();
         CameraTable table = new CameraTable();
-        table.insertRecord(database, item);
+        int id = table.insertRecord(database, item);
         close();
+        return id;
     }
 
     public void updateCamera(CameraDB item){
         open();
         CameraTable table = new CameraTable();
-        table.insertRecord(database, item);
+        table.updateRecord(database, item);
         close();
     }
 
@@ -62,7 +63,21 @@ public class MySQLiteDataSource {
         close();
     }
 
+    public void deleteCamera(int id){
+        open();
+        CameraTable table = new CameraTable();
+        table.deleteRecord(database, id);
+        close();
+    }
+
     public void clearCamera(){
+        open();
+        CameraTable table = new CameraTable();
+        table.clearTable(database);
+        close();
+    }
+
+    public void updatePassword(String did, String password){
         open();
         CameraTable table = new CameraTable();
         table.clearTable(database);

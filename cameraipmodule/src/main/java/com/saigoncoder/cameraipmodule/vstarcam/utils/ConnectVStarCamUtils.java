@@ -19,6 +19,9 @@ public class ConnectVStarCamUtils {
     private ConnectVStarCamUtils() {
     }
 
+    public static int option = ContentCommon.INVALID_OPTION;
+    public static int CameraType = ContentCommon.CAMERA_TYPE_MJPEG;
+
     private void startCameraPPPP() {
         try {
             Thread.sleep(100);
@@ -172,6 +175,13 @@ public class ConnectVStarCamUtils {
                                 listener.connecerror();
                             }
                         }
+
+                        if (msgParam == ContentCommon.PPPP_STATUS_CONNECT_ERRER) {
+                            if(listener != null){
+                                listener.connectWrongPassword();
+                            }
+                        }
+
                         break;
                     case ContentCommon.PPPP_MSG_TYPE_PPPP_MODE:
                         break;
@@ -217,6 +227,7 @@ public class ConnectVStarCamUtils {
         void connectStatus(int resid);
         void connectSuccess();
         void connecerror();
+        void connectWrongPassword();
     }
 
 }

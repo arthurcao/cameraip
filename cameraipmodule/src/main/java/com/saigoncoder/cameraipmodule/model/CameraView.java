@@ -7,7 +7,7 @@ public class CameraView {
 
     public String title = "";
     public String subtitle = "";
-    public String id = "";
+    public String id = "";  //Token for nestcam, did for vstarcam
     public int type = 0;
 
 }

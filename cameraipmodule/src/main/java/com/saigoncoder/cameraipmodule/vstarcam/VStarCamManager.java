@@ -53,6 +53,15 @@ public class VStarCamManager {
         }).start();
     }
 
+
+    public void updateVStarcamPassword(CameraDB camera){
+        sqLiteDataSource.updateCamera(camera);
+    }
+
+    public void deleteVStarcam(int id){
+        sqLiteDataSource.deleteCamera(id);
+    }
+
     public void stopVStarcamService(){
         Intent intent = new Intent();
         intent.setClass(context, BridgeService.class);
@@ -61,13 +70,7 @@ public class VStarCamManager {
 
     public void getListCamera(){
         int user_id = SharedPreferencesUtil.getUser(context);
-
-//        ArrayList<CameraDB> list = sqLiteDataSource.getCameras(user_id,CameraManager.TYPE_VS_CAM);
-//        for(int i = 0; i < list.size(); i++){
-//            CameraDB camera = list.get(i);
-//
-//        }
-        ArrayList<CameraDB> list = new ArrayList<>();
+        ArrayList<CameraDB> list = sqLiteDataSource.getCameras(user_id,CameraManager.TYPE_VSTARCAM);
         responseGetListCameras(list);
     }
 

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="#bdc3c7"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cruise"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/camera_play_cruise_tour_vertical"
+            android:layout_margin="8dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="#9b59b6"
+            android:drawableTop="@drawable/ptz_vert_tour"
+            android:gravity="center_horizontal"
+            android:text="Vertical"
+            android:textColor="#ffffff" />
+        <TextView
+            android:id="@+id/camera_play_cruise_tour_horizontal"
+            android:layout_margin="8dp"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/ptz_hori_tour"
+            android:textColor="#ffffff"
+            android:background="#3498db"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:text="Horizontal"/>
+
+        <TextView
+            android:id="@+id/camera_play_cruise_flip_vertical"
+            android:layout_margin="8dp"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/ptz_vert_mirror"
+            android:textColor="#ffffff"
+            android:background="#3498db"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:text="Flip Vertical"/>
+
+        <TextView
+            android:id="@+id/camera_play_cuise_flip_horizontal"
+            android:layout_margin="8dp"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/ptz_hori_mirror"
+            android:textColor="#ffffff"
+            android:background="#3498db"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:text="Flip horizontal"/>
+
+    </LinearLayout>
+
+
+    <ImageButton
+        android:id="@+id/camera_play_cruise_tour_close"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/ic_clear_black_24dp"
+        android:layout_marginTop="16dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        />
+</LinearLayout>
